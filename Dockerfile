@@ -13,8 +13,9 @@ RUN \
   apt-get update && \
   apt-get install -y haproxy=1.5.3-1~ubuntu14.04.1 && \
   sed -i 's/^ENABLED=.*/ENABLED=1/' /etc/default/haproxy && \
-  rm -rf /var/lib/apt/lists/*
-
+  rm -rf /var/lib/apt/lists/* && \
+  mkdir /haproxy-override #for the sake of lxc based vms which need the folder to exist
+  
 # Add files.
 ADD haproxy.cfg /etc/haproxy/haproxy.cfg
 ADD start.bash /haproxy-start
